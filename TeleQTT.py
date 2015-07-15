@@ -17,6 +17,10 @@ def on_connect(mosq, obj, rc):
 def on_publish(mosq, obj, mid):
     print("Message "+str(mid)+" published.")
  
+def on_disconnect(mosq, obj, rc):
+    if rc != 0:
+        print("Unexpected disconnection.")
+
  
 #called on exit
 #close serial, disconnect MQTT
@@ -42,6 +46,7 @@ try:
 #attach MQTT callbacks
     mqttc.on_connect = on_connect
     mqttc.on_publish = on_publish
+    mqttc.on_disconnect = on_disconnect
 
 #connect to broker
     mqttc.connect(broker, port, 60, True)
