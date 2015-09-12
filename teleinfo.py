@@ -36,7 +36,7 @@ class Teleinfo:
                 framesOK = dict([
                         [frame[0],frame[1]]
                         for frame in frames
-                        if (len(frame) == 3) and (self.checksum(frame[0],frame[1]) == frame[2])
+                        if ((len(frame) == 3) and (self.checksum(frame[0],frame[1]) == frame[2])) or ((len(frame) == 4) and (self.checksum(frame[0],frame[1]) == " "))
                         ])
                         
                 return framesOK
